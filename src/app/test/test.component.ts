@@ -38,18 +38,16 @@ export class TestComponent implements OnInit {
     await this.dataService.addTest(this.test).then(
 
       data => {
-        console.log("PUT Request is successful ", data);
+        console.log(data);
       },
       error => {
-        console.log("Rrror", error);
+        console.log(error);
       }
     );
     this.router.navigate([''], { state: { msg: 'Test added.' } });
   }
   async onDelete() {
     await this.dataService.deleteTest(this.test.id);
-    console.log("ASDSD");
     this.router.navigate([''], { state: { msg: 'Test deleted.', id: this.test.id } });
   }
-
 }

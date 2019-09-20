@@ -2,7 +2,8 @@
   <div>
     {{test.type }} D {{test.date | date: 'dd/MM/yyyy' }}
   </div>
-  <button type="button" (click)="onDelete()">Delete</button>
+  <button type="button" class="btn btn-secondary" [routerLink]="['/addAthlete']" [state]="{TId: test.id}">ADD NEW ATHLETE TO TEST</button>
+  <button type="button" class="btn btn-secondary" (click)="onDelete()">DELETE</button>
 
 </div>
 

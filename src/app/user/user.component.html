@@ -1,0 +1,47 @@
+<form #myForm="ngForm" class="myForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+  <h4>Add User</h4>
+  <label>Name</label>
+  <input type="text" class="form-control" id="name" [(ngModel)]="user.name" name="name" required>
+  <label>Role</label>
+  <select class="form-control" id="type" [(ngModel)]="user.type" name="type" required>
+    <option>Athlete</option>
+    <option>Coach</option>
+  </select>
+  <br>
+  <input type="submit" class="btn btn-primary">
+</form>
+
+<div *ngIf="flag" class="alert alert-primary" role="alert">
+  {{msg}}
+</div>
+
+<div class = "table">
+  <table class = "table">
+    <thead>
+      <th>Name</th>
+      <th>Role</th>
+      <th></th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor='let user of users'>
+
+        <td>{{user.name}}</td>
+        <td>{{user.type}}</td>
+        <td><Button class="btn btn-danger" (click)="onDelete(user.id)">Delete</Button></td>
+<!--
+        <td>
+          <a [routerLink]="['/tests', test.id]">
+            <Button class="btn btn-primary">Edit</Button>
+          </a>
+        </td>
+        <td>
+            <Button class="btn btn-danger" (click)="delete(test.id)">Delete</Button>
+        </td> -->
+
+
+      </tr>
+    </tbody>
+
+  </table>
+  </div>

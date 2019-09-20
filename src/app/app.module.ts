@@ -7,12 +7,16 @@ import { TestComponent } from './test/test.component';
 import { TestsListComponent } from './tests-list/tests-list.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserComponent } from './user/user.component';
+import { UserTestMappingComponent } from './user-test-mapping/user-test-mapping.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    TestsListComponent
+    TestsListComponent,
+    UserComponent,
+    UserTestMappingComponent
   ],
   imports: [
     BrowserModule,

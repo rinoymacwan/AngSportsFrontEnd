@@ -14,7 +14,14 @@ export class TestsListComponent implements OnInit {
   public test: Test;
   msg: string;
   flag: boolean;
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private router: Router) {
+    if (this.router.getCurrentNavigation().extras.state != null) {
+      this.flag = true;
+      this.msg = this.router.getCurrentNavigation().extras.state.msg;
+    } else {
+      this.flag = false;
+    }
+  }
 
   ngOnInit() {
     // this.router.events.subscribe(routerEvent => {
@@ -23,16 +30,6 @@ export class TestsListComponent implements OnInit {
     // }
     // );
     this.fetchData();
-    if (this.router.getCurrentNavigation() != null) {
-      this.flag = true;
-      this.msg = this.router.getCurrentNavigation().extras.state.msg;
-      this.tests.splice(this.router.getCurrentNavigation().extras.state.id, 1);
-      console.log(this.msg);
-    } else {
-      this.flag = false;
-      console.log("SECOND");
-    }
-
   }
   get myFunc() {
     return JSON.stringify(this.tests);
