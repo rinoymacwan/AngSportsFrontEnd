@@ -1,0 +1,17 @@
+.notNew{
+  width: 200px;
+	height: 100px;
+	position: absolute;
+	left: 0;
+	right: 0;
+
+	margin: auto;
+}
+
+.New{
+  text-align: center;
+}
+
+.myForm{
+  display: inline-block;
+}

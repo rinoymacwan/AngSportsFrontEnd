@@ -1,0 +1,38 @@
+
+<button type="button" class="btn btn-Secondary" [routerLink]="['/test', 0]">CREATE NEW TEST</button>
+<br>
+<div class = "table">
+  <table class = "table">
+    <thead>
+      <th>Date</th>
+      <th>Number of Participants</th>
+      <th>Type</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor='let test of tests'>
+
+        <td>{{test.date | date: 'dd/MM/yyyy' }}</td>
+        <td>X</td>
+        <td><a [routerLink]="['/test', test.id]">{{test.type}}</a></td>
+<!--
+        <td>
+          <a [routerLink]="['/tests', test.id]">
+            <Button class="btn btn-primary">Edit</Button>
+          </a>
+        </td>
+        <td>
+            <Button class="btn btn-danger" (click)="delete(test.id)">Delete</Button>
+        </td> -->
+
+
+      </tr>
+    </tbody>
+
+  </table>
+  </div>
+  <div *ngIf="flag" class="alert alert-primary" role="alert">
+    {{msg}}
+  </div>
+
+  <!-- <button type="button" (click)="postTesting()">Test</button> -->

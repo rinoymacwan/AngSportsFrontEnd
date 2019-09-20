@@ -1,0 +1,19 @@
+.btn {
+  border: 2px solid grey;
+  margin:auto;
+  display:block;
+  padding-left: 80px;
+  padding-right: 80px;
+  border-radius: 13px;
+}
+
+.btn:hover {
+  background-color: grey;
+  color: white;
+}
+
+.table{
+  width: 70%;
+  align-self: center;
+  margin:auto;
+}

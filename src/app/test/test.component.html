@@ -1,0 +1,26 @@
+<div *ngIf="this.newFlag!=0" class="notNew">
+  <div>
+    {{test.type }} D {{test.date | date: 'dd/MM/yyyy' }}
+  </div>
+  <button type="button" (click)="onDelete()">Delete</button>
+
+</div>
+
+<div class="New">
+
+
+
+  <form *ngIf="this.newFlag==0" #myForm="ngForm" class="myForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+    <h4>CREATE NEW TEST</h4>
+    <label>Type</label>
+    <select class="form-control" id="type" [(ngModel)]="test.type" name="type" required>
+      <option>Coopertest</option>
+      <option>100 meter sprint</option>
+    </select>
+
+    <label>Date</label>
+    <input type="date" class="form-control" id="date" [(ngModel)]="test.date" name="date" required>
+<br>
+    <input type="submit" class="btn btn-primary">
+  </form>
+</div>
