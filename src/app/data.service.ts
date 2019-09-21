@@ -4,10 +4,12 @@ import { Test } from './test';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { User } from './user';
+import { UserTestMapping } from './user-test-mapping';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
   private testUrl = 'http://localhost:6600/api/Tests/';
   constructor(private http: HttpClient) {
     const httpHeaders = new HttpHeaders({
@@ -24,8 +26,9 @@ export class DataService {
     return this.http.get<Test[]>(this.testUrl);
   }
 
-  getTestById(id: number): Observable<Test> {
-    return this.http.get<Test>('http://localhost:6600/api/Tests/' + id);
+  async getTestById(id: number): Promise<Test> {
+    const x = await this.http.get<Test>('http://localhost:6600/api/Tests/' + id).toPromise();
+    return x;
   }
 
   async addTest(test: Test): Promise<Test> {
@@ -98,4 +101,62 @@ export class DataService {
     const x = this.http.get<User[]>('http://localhost:6600/api/Users/Athletes', options).toPromise();
     return x;
   }
+
+  async addUserTestMapping(userTestMapping: UserTestMapping): Promise<UserTestMapping> {
+    console.log('Data Service: Add UserTestMapping');
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      headers: httpHeaders
+    };
+    const x = this.http.post<UserTestMapping>('http://localhost:6600/api/UserTestMappings', userTestMapping, options).toPromise();
+    return x;
+  }
+  getAthletesByTestId(id: number): Observable<UserTestMapping[]> {
+    console.log('Data Service: Get Athletes by Test Id');
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      headers: httpHeaders
+    };
+    const x = this.http.get<UserTestMapping[]>('http://localhost:6600/api/UserTestMappings/getAthletesByTestId/' + id, options);
+    return x;
+  }
+  getParticipants(): Promise<number[]> {
+    console.log('Data Service: Get Athletes by Test Id');
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      headers: httpHeaders
+    };
+    const x = this.http.get<number[]>('http://localhost:6600/api/UserTestMappings/getPar', options).toPromise();
+    return x;
+  }
+  getUserTestMapping(id: number): Promise<UserTestMapping> {
+    console.log('Data Service: Get UserTestMapping by Id');
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      headers: httpHeaders
+    };
+    const x = this.http.get<UserTestMapping>('http://localhost:6600/api/UserTestMappings/' + id, options).toPromise();
+    return x;
+  }
+  async editUserTestMapping(userTestMapping: UserTestMapping): Promise<UserTestMapping> {
+    console.log('Data Service: Edit UserTestMapping');
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      headers: httpHeaders
+    };
+    // tslint:disable-next-line: max-line-length
+    const x = this.http.put<UserTestMapping>('http://localhost:6600/api/UserTestMappings/' + userTestMapping.id, userTestMapping, options).toPromise();
+    return x;
+  }
+
 }

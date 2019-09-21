@@ -1,14 +1,37 @@
+<a [routerLink]="['']" class="back"><span class="fa fa-angle-left fa-3x"></span></a>
+<br>
+<br>
 <div *ngIf="this.newFlag!=0" class="notNew">
-  <div>
+
+
+  <div style="font-size: 15pt">
     {{test.type }} D {{test.date | date: 'dd/MM/yyyy' }}
   </div>
-  <button type="button" class="btn btn-secondary" [routerLink]="['/addAthlete']" [state]="{TId: test.id}">ADD NEW ATHLETE TO TEST</button>
+
+  <table class = "table">
+    <thead>
+      <th>Name</th>
+      <th *ngIf="this.cooper">Distance</th>
+      <th *ngIf="this.cooper">Fitness Rating</th>
+      <th *ngIf="this.sprint">Time</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let userDetails of userTestMappings">
+        <td><a [routerLink]="['/addAthlete']" [state]="{id: userDetails.id}">{{getName(userDetails.uId)}}</a></td>
+        <td *ngIf="this.cooper">{{userDetails.distance}}</td>
+        <td *ngIf="this.cooper">{{getFR(userDetails.distance)}}</td>
+        <td *ngIf="this.sprint">{{userDetails.time}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a  [routerLink]="['/addAthlete']" [state]="{ TId:test.id , testType:test.type}"><button type="button" class="btn btn-secondary">NEW ATHLETE TO TEST</button></a>
   <button type="button" class="btn btn-secondary" (click)="onDelete()">DELETE</button>
 
 </div>
 
 <div class="New">
-
 
 
   <form *ngIf="this.newFlag==0" #myForm="ngForm" class="myForm" (ngSubmit)="onSubmit()" ngNativeValidate>

@@ -1,0 +1,42 @@
+div{
+  text-align: center;
+}
+
+.myForm{
+  display: inline-block;
+}
+
+.notNew{
+  width: 400px;
+	height: 100px;
+	position: absolute;
+	left: 0;
+	right: 0;
+  text-align: center;
+	margin: auto;
+}
+
+.New{
+  text-align: center;
+}
+
+
+.btn {
+  border: 2px solid grey;
+  width: 400px;
+  margin: auto;
+  display:block;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 13px;
+  background-color: white;
+  color: black;
+}
+
+.btn:hover {
+  background-color: grey;
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+}

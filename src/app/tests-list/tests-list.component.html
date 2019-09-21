@@ -10,10 +10,10 @@
     </thead>
 
     <tbody>
-      <tr *ngFor='let test of tests'>
+      <tr *ngFor='let test of tests, let i=index'>
 
         <td>{{test.date | date: 'dd/MM/yyyy' }}</td>
-        <td>X</td>
+        <td>{{num[i]}}</td>
         <td><a [routerLink]="['/test', test.id]">{{test.type}}</a></td>
 <!--
         <td>

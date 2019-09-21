@@ -14,6 +14,7 @@ export class TestsListComponent implements OnInit {
   public test: Test;
   msg: string;
   flag: boolean;
+  num: number[];
   constructor(private dataService: DataService, private router: Router) {
     if (this.router.getCurrentNavigation().extras.state != null) {
       this.flag = true;
@@ -38,6 +39,10 @@ export class TestsListComponent implements OnInit {
     this.dataService.getTests().subscribe(
       (t) => {
         this.tests = t.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      });
+    this.dataService.getParticipants().then(
+      (num) => {
+        this.num = num;
       });
   }
 }

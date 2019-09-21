@@ -32,3 +32,10 @@
   background-color: grey;
   color: white;
 }
+a:hover {
+  text-decoration: none;
+}
+.back{
+  position: absolute;
+	left: 480px;
+}

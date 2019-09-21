@@ -1,6 +1,52 @@
-<p>user-test-mapping works!</p>
-<select>
-  <option *ngFor="let athlete of athletes" value="athlete.name">
-    {{athlete.name}}
-  </option>
-</select>
+<div *ngIf="!flag">
+  <form #myForm="ngForm" class="myForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+    <h4>ADD ATHLETE TO TEST</h4>
+    <label>Name</label>
+    <select class="form-control" id="id" [(ngModel)]="userTestMapping.uId" name="id" required>
+      <option *ngFor="let athlete of athletes" value={{athlete.id}}>
+        {{athlete.name}}
+      </option>
+    </select>
+
+    <div *ngIf="this.cooper">
+
+      <label>Distance</label>
+      <input type="number" class="form-control" id="distance" [(ngModel)]="userTestMapping.distance" name="distance" required>
+    </div>
+
+    <div *ngIf="this.sprint">
+      <label>Time</label>
+      <input type="number" class="form-control" id="time" [(ngModel)]="userTestMapping.time" name="time" required>
+
+    </div>
+    <br>
+    <input type="submit" class="btn btn-primary">
+  </form>
+</div>
+
+<div *ngIf="flag">
+    <form #myForm="ngForm" class="myForm" (ngSubmit)="onEdit()" ngNativeValidate>
+      <h4>EDIT ATHLETE DATA</h4>
+      <label>Name</label>
+      <select class="form-control" id="id" [(ngModel)]="userTestMapping.uId" name="id" required disabled>
+        <option *ngFor="let athlete of athletes" value={{athlete.id}}>
+          {{athlete.name}}
+        </option>
+      </select>
+
+      <div *ngIf="this.cooper">
+
+        <label>Distance</label>
+        <input type="number" class="form-control" id="distance" [(ngModel)]="userTestMapping.distance" name="distance" required>
+      </div>
+
+      <div *ngIf="this.sprint">
+        <label>Time</label>
+        <input type="number" class="form-control" id="time" [(ngModel)]="userTestMapping.time" name="time" required>
+
+      </div>
+      <br>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+
