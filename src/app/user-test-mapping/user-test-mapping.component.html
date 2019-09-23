@@ -26,7 +26,7 @@
 
 <div *ngIf="flag">
     <form #myForm="ngForm" class="myForm" (ngSubmit)="onEdit()" ngNativeValidate>
-      <h4>EDIT ATHLETE DATA</h4>
+      <h4>CHANGE DATA FOR ATHLETE</h4>
       <label>Name</label>
       <select class="form-control" id="id" [(ngModel)]="userTestMapping.uId" name="id" required disabled>
         <option *ngFor="let athlete of athletes" value={{athlete.id}}>
@@ -46,7 +46,8 @@
 
       </div>
       <br>
-      <input type="submit" class="btn btn-primary">
+      <input type="submit" class="btn btn-primary" value="SAVE">
+      <input type="button" (click)='onDelete(this.userTestMapping.id)' class="btn btn-primary" value="DELETE">
     </form>
   </div>
 

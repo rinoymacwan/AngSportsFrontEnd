@@ -155,9 +155,21 @@ export class DataService {
       headers: httpHeaders
     };
     // tslint:disable-next-line: max-line-length
-    console.log(JSON.stringify(userTestMapping));
+    // console.log(JSON.stringify(userTestMapping));
     // tslint:disable-next-line: max-line-length
     const x = this.http.put<UserTestMapping>('http://localhost:6600/api/UserTestMappings/' + userTestMapping.id, userTestMapping, options).toPromise();
+    return x;
+  }
+  deleteUserTestMapping(id: number) {
+    console.log('Data Service: Edit UserTestMapping');
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      headers: httpHeaders
+    };
+    // tslint:disable-next-line: max-line-length
+    const x = this.http.delete<UserTestMapping>('http://localhost:6600/api/UserTestMappings/' + id, options).toPromise();
     return x;
   }
 

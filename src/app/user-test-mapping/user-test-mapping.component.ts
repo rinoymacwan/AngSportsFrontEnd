@@ -20,6 +20,8 @@ export class UserTestMappingComponent implements OnInit {
   userTestMapping: UserTestMapping;
   constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router) {
     if (this.router.getCurrentNavigation().extras.state != null) {
+      console.log("ASASFSDSDS");
+      console.log(this.router.getCurrentNavigation().extras.state.TId);
       if (this.router.getCurrentNavigation().extras.state.testType === 'Coopertest') {
 
         this.cooper = true;
@@ -55,8 +57,6 @@ export class UserTestMappingComponent implements OnInit {
     );
   }
   async onSubmit(myForm: NgForm) {
-    console.log("XXXXXXXXX");
-    console.log(this.testId);
     this.userTestMapping.tId = this.testId;
     console.log(JSON.stringify(this.userTestMapping));
     await this.dataService.addUserTestMapping(this.userTestMapping).then(
@@ -72,9 +72,6 @@ export class UserTestMappingComponent implements OnInit {
   }
 
   async onEdit(myForm: NgForm) {
-    console.log("AAAAAA");
-    console.log(this.userTestMapping.tId);
-    //this.userTestMapping.tId = this.testId;
     console.log(JSON.stringify(this.userTestMapping));
     await this.dataService.editUserTestMapping(this.userTestMapping).then(
 
@@ -86,6 +83,22 @@ export class UserTestMappingComponent implements OnInit {
       }
     );
     this.router.navigate(['/test', this.userTestMapping.tId], { state: { msg: 'UserTestMapping added.' } });
+  }
+
+  async onDelete(id: number) {
+    if (confirm('Are you sure you want to delete this entry?')) {
+      await this.dataService.deleteUserTestMapping(id).then(
+
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      this.router.navigate(['/test', this.userTestMapping.tId], { state: { msg: 'UserTestMapping deleted.' } });
+
+    }
   }
 
 }

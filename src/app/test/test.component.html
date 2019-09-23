@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let userDetails of userTestMappings">
-        <td><a [routerLink]="['/addAthlete']" [state]="{id: userDetails.id}">{{getName(userDetails.uId)}}</a></td>
+        <td><a [routerLink]="['/addAthlete']" [state]="{id: userDetails.id, TId: test.id , testType: test.type}">{{getName(userDetails.uId)}}</a></td>
         <td *ngIf="this.cooper">{{userDetails.distance}}</td>
         <td *ngIf="this.cooper">{{getFR(userDetails.distance)}}</td>
         <td *ngIf="this.sprint">{{userDetails.time}}</td>
@@ -25,9 +25,8 @@
     </tbody>
   </table>
 
-
-  <a  [routerLink]="['/addAthlete']" [state]="{ TId:test.id , testType:test.type}"><button type="button" class="btn btn-secondary">NEW ATHLETE TO TEST</button></a>
-  <button type="button" class="btn btn-secondary" (click)="onDelete()">DELETE</button>
+  <a [routerLink]="['/addAthlete']" [state]="{ TId: test.id , testType: test.type}"><button type="button" class="btn btn-secondary">ADD NEW ATHLETE TO TEST</button></a>
+  <button type="button" class="btn btn-secondary" (click)="onDelete()">DELETE TEST</button>
 
 </div>
 

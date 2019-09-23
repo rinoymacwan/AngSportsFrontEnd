@@ -79,8 +79,11 @@ export class TestComponent implements OnInit {
     this.router.navigate([''], { state: { msg: 'Test added.' } });
   }
   async onDelete() {
-    await this.dataService.deleteTest(this.test.id);
-    this.router.navigate([''], { state: { msg: 'Test deleted.', id: this.test.id } });
+    if (confirm('Are you sure you want to delete this test?')) {
+      await this.dataService.deleteTest(this.test.id);
+      this.router.navigate([''], { state: { msg: 'Test deleted.', id: this.test.id } });
+    }
+
   }
   getFR(dist: number) {
     if (dist <= 1000) {
@@ -94,6 +97,6 @@ export class TestComponent implements OnInit {
     }
   }
   getName(id: number) {
-    return this.athletes.filter( a => a.id === id)[0].name;
+    return this.athletes.filter(a => a.id === id)[0].name;
   }
 }
