@@ -155,6 +155,8 @@ export class DataService {
       headers: httpHeaders
     };
     // tslint:disable-next-line: max-line-length
+    console.log(JSON.stringify(userTestMapping));
+    // tslint:disable-next-line: max-line-length
     const x = this.http.put<UserTestMapping>('http://localhost:6600/api/UserTestMappings/' + userTestMapping.id, userTestMapping, options).toPromise();
     return x;
   }

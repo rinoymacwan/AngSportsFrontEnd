@@ -55,6 +55,8 @@ export class UserTestMappingComponent implements OnInit {
     );
   }
   async onSubmit(myForm: NgForm) {
+    console.log("XXXXXXXXX");
+    console.log(this.testId);
     this.userTestMapping.tId = this.testId;
     console.log(JSON.stringify(this.userTestMapping));
     await this.dataService.addUserTestMapping(this.userTestMapping).then(
@@ -70,7 +72,9 @@ export class UserTestMappingComponent implements OnInit {
   }
 
   async onEdit(myForm: NgForm) {
-    this.userTestMapping.tId = this.testId;
+    console.log("AAAAAA");
+    console.log(this.userTestMapping.tId);
+    //this.userTestMapping.tId = this.testId;
     console.log(JSON.stringify(this.userTestMapping));
     await this.dataService.editUserTestMapping(this.userTestMapping).then(
 
@@ -81,7 +85,7 @@ export class UserTestMappingComponent implements OnInit {
         console.log(error);
       }
     );
-    this.router.navigate(['/test', this.testId], { state: { msg: 'UserTestMapping added.' } });
+    this.router.navigate(['/test', this.userTestMapping.tId], { state: { msg: 'UserTestMapping added.' } });
   }
 
 }
